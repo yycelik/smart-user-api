@@ -28,4 +28,4 @@ spec:
     - cat
     tty: true
   imagePullSecrets:
-    - name: nexus-registry-cred
+    - name: regcred
