@@ -22,8 +22,8 @@ pipeline {
             steps {
                 container("smart-mvn-agent") {
                     withCredentials([usernamePassword(credentialsId: "yycelik.github.com", usernameVariable: "USERNAME0", passwordVariable: "PASSWORD0"),
-                                     usernamePassword(credentialsId: "nexus", usernameVariable: "USERNAME1", passwordVariable: "PASSWORD1"),
-                                     usernamePassword(credentialsId: "database", usernameVariable: "USERNAME2", passwordVariable: "PASSWORD2")]) {
+                                     usernamePassword(credentialsId: "nexus.s3t.co", usernameVariable: "USERNAME1", passwordVariable: "PASSWORD1"),
+                                     usernamePassword(credentialsId: "mysql.s3t.co", usernameVariable: "USERNAME2", passwordVariable: "PASSWORD2")]) {
                         sh """
                             git clone https://$USERNAME0:$PASSWORD0@github.com/yycelik/smart-user-api.git
 
@@ -57,8 +57,8 @@ pipeline {
         stage("deploy") {
             steps {
                 container("smart-skaffold-agent") {
-                    withCredentials([usernamePassword(credentialsId: "nexus", usernameVariable: "USERNAME1", passwordVariable: "PASSWORD1"),
-                                     usernamePassword(credentialsId: "database", usernameVariable: "USERNAME2", passwordVariable: "PASSWORD2")]) {
+                    withCredentials([usernamePassword(credentialsId: "nexus.s3t.co", usernameVariable: "USERNAME1", passwordVariable: "PASSWORD1"),
+                                     usernamePassword(credentialsId: "mysql.s3t.co", usernameVariable: "USERNAME2", passwordVariable: "PASSWORD2")]) {
                         sh """
                             export REGISTRY_GROUP="docker-g.nexus.s3t.co"
 
