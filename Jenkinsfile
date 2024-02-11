@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        KUBECONFIG = credentials('smart_kube_config')
+        KUBECONFIG = credentials('k8s.s3t.co')
     }
 
     stages {
