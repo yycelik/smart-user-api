@@ -15,6 +15,7 @@
 	<description>User and login managment</description>
 	<properties>
 		<java.version>17</java.version>
+		<jib-maven-plugin.version>3.2.1</jib-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -84,7 +85,131 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${jib-maven-plugin.version}</version>
+                <configuration>
+                    <!--If you want custom base image and push registry, use below configuration replace above-->
+                    <from>
+                        <!--<image>registry-1.docker.io/openjdk:17-jdk-alpine</image>-->
+						<image>${env.REGISTRY_GROUP}/openjdk:17-jdk-alpine</image>
+						<auth>
+							<username>${env.REGISTRY_USERNAME}</username>
+							<password>${env.REGISTRY_PASSWORD}</password>
+						</auth>
+                    </from>
+                    <to>
+                        <image>${env.REGISTRY_SNAPSHOOT}/smart/${project.artifactId}:${project.version}</image>
+						<auth>
+							<username>${env.REGISTRY_USERNAME}</username>
+							<password>${env.REGISTRY_PASSWORD}</password>
+						</auth>
+                    </to>
+					<allowInsecureRegistries>true</allowInsecureRegistries>
+
+                    <container>
+                        <jvmFlags>
+                            <jvmFlag>-Djava.security.egd=file:/dev/./urandom</jvmFlag>
+                            <jvmFlag>-Duser.timezone=GMT+03</jvmFlag>
+							<jvmFlag>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmFlag>
+                        </jvmFlags>
+                        <mainClass>com.smart.user.UserApplication</mainClass>
+                        <ports>
+                            <port>8443</port>
+							<port>5005</port>
+                        </ports>
+                    </container>
+                </configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+            </plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	<profiles>
+		<profile>
+			<id>create-image</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+					</plugin>
+		
+					<plugin>
+						<groupId>com.google.cloud.tools</groupId>
+						<artifactId>jib-maven-plugin</artifactId>
+						<version>${jib-maven-plugin.version}</version>
+						<configuration>
+							
+							<!--If you want custom base image and push registry, use below configuration replace above-->
+							<from>
+								<image>${env.REGISTRY_GROUP}/openjdk:17-jdk-alpine</image>
+								<auth>
+									<username>${env.REGISTRY_USERNAME}</username>
+									<password>${env.REGISTRY_PASSWORD}</password>
+								</auth>
+							</from>
+							<to>
+								<image>${env.REGISTRY_RELEASE}/smart/${project.artifactId}:${project.version}</image>
+								<auth>
+									<username>${env.REGISTRY_USERNAME}</username>
+									<password>${env.REGISTRY_PASSWORD}</password>
+								</auth>
+							</to>
+							<allowInsecureRegistries>true</allowInsecureRegistries>
+		
+							<container>
+								<jvmFlags>
+									<jvmFlag>-Djava.security.egd=file:/dev/./urandom</jvmFlag>
+									<jvmFlag>-Duser.timezone=GMT+03</jvmFlag>
+								</jvmFlags>
+								<ports>
+									<port>8443</port>
+								</ports>
+							</container>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+
 
 </project>

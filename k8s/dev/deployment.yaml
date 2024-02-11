@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smart-user-api
+  labels:
+    app: smart-user-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-user-api
+  template:
+    metadata:
+      labels:
+        app: smart-user-api
+    spec:
+      containers:
+      - name: smart-user-api
+        image: docker-g.nexus.s3t.co/smart/task:latest
+        imagePullPolicy: Always
+        ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP
+          - name: debug
+            containerPort: 5005
+            protocol: TCP
+          - name: httpsport
+            containerPort: 8443
+            protocol: TCP
+        env:
+          - name: DATASOURCE_URL
+            valueFrom: 
+              secretKeyRef:
+                name: smart-database
+                key: url
+          - name: DATASOURCE_USERNAME
+            valueFrom: 
+              secretKeyRef:
+                name: smart-database
+                key: username
+          - name: DATASOURCE_PASSWORD
+            valueFrom: 
+              secretKeyRef:
+                name: smart-database
+                key: password 
+          - name: CERTIFICATE_PASSWORD
+            valueFrom: 
+              secretKeyRef:
+                name: smart-certificate
+                key: password 
+        volumeMounts:
+          - name: my-certificate-volume
+            mountPath: "/etc/certs"
+      volumes:
+        - name: my-certificate-volume
+          secret:
+            secretName: s3t-wildcard-cert-prod-p12
+        
