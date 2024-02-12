@@ -10,7 +10,7 @@ build:
       jib: {}
   insecureRegistries: ["docker-s.nexus.s3t.co","docker-r.nexus.s3t.co","docker-p.nexus.s3t.co","docker-g.nexus.s3t.co"]
 profiles:
-- name: test
+- name: prod
   build:
     artifacts:
     - image: docker-r.nexus.s3t.co/smart/user
