@@ -52,7 +52,7 @@ spec:
         valueFrom:
           secretKeyRef:
             name: jenkins-skaffold-agent-env
-            key: public
+            key: group
       - name: DOCKER_REGISTRY_RELEASE # image parameter for pom.xml
         valueFrom:
           secretKeyRef:
