@@ -32,7 +32,7 @@
 		<dependency>
 			<groupId>com.smart</groupId>
 			<artifactId>core</artifactId>
-			<version>0.1.1</version>
+			<version>1.0.5</version>
 		</dependency>
 
 		<dependency>
@@ -94,14 +94,14 @@
                     <!--If you want custom base image and push registry, use below configuration replace above-->
                     <from>
                         <!--<image>registry-1.docker.io/openjdk:17-jdk-alpine</image>-->
-						<image>${env.REGISTRY_GROUP}/openjdk:17-jdk-alpine</image>
+						<image>${env.DOCKER_REGISTRY_GROUP}/openjdk:17-jdk-alpine</image>
 						<auth>
 							<username>${env.REGISTRY_USERNAME}</username>
 							<password>${env.REGISTRY_PASSWORD}</password>
 						</auth>
                     </from>
                     <to>
-                        <image>${env.REGISTRY_SNAPSHOOT}/smart/${project.artifactId}:${project.version}</image>
+                        <image>${env.DOCKER_REGISTRY_SNAPSHOOT}/smart/${project.artifactId}:${project.version}</image>
 						<auth>
 							<username>${env.REGISTRY_USERNAME}</username>
 							<password>${env.REGISTRY_PASSWORD}</password>
@@ -171,14 +171,14 @@
 							
 							<!--If you want custom base image and push registry, use below configuration replace above-->
 							<from>
-								<image>${env.REGISTRY_GROUP}/openjdk:17-jdk-alpine</image>
+								<image>${env.DOCKER_REGISTRY_GROUP}/openjdk:17-jdk-alpine</image>
 								<auth>
 									<username>${env.REGISTRY_USERNAME}</username>
 									<password>${env.REGISTRY_PASSWORD}</password>
 								</auth>
 							</from>
 							<to>
-								<image>${env.REGISTRY_RELEASE}/smart/${project.artifactId}:${project.version}</image>
+								<image>${env.DOCKER_REGISTRY_RELEASE}/smart/${project.artifactId}:${project.version}</image>
 								<auth>
 									<username>${env.REGISTRY_USERNAME}</username>
 									<password>${env.REGISTRY_PASSWORD}</password>

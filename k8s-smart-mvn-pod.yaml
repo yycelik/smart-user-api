@@ -22,10 +22,92 @@ spec:
     command:
     - cat
     tty: true
+    env:
+      - name: REGISTRY_USERNAME # image parameter for settings.xml
+        valueFrom:
+          secretKeyRef:
+            name: nexus-s3-co-secret
+            key: username
+      - name: REGISTRY_PASSWORD # image parameter for settings.xml
+        valueFrom:
+          secretKeyRef:
+            name: nexus-s3-co-secret
+            key: password
+      - name: MVN_REGISTRY_GROUP # image parameter for settings.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-mvn-agent-env
+            key: public
+      - name: MVN_REGISTRY_RELEASE # image parameter for settings.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-mvn-agent-env
+            key: release
+      - name: MVN_REGISTRY_SNAPSHOOT # image parameter for settings.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-mvn-agent-env
+            key: snapshoot
+      - name: DOCKER_REGISTRY_GROUP # image parameter for pom.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-skaffold-agent-env
+            key: public
+      - name: DOCKER_REGISTRY_RELEASE # image parameter for pom.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-skaffold-agent-env
+            key: release
+      - name: DOCKER_REGISTRY_SNAPSHOOT # image parameter for pom.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-skaffold-agent-env
+            key: snapshoot
   - name: smart-skaffold-agent
     image: docker-r.nexus.s3t.co/smart-skaffold-agent:latest
     command:
     - cat
     tty: true
+    env:
+      - name: REGISTRY_USERNAME # image parameter for settings.xml
+        valueFrom:
+          secretKeyRef:
+            name: nexus-s3-co-secret
+            key: username
+      - name: REGISTRY_PASSWORD # image parameter for settings.xml
+        valueFrom:
+          secretKeyRef:
+            name: nexus-s3-co-secret
+            key: password
+      - name: MVN_REGISTRY_GROUP # image parameter for settings.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-mvn-agent-env
+            key: public
+      - name: MVN_REGISTRY_RELEASE # image parameter for settings.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-mvn-agent-env
+            key: release
+      - name: MVN_REGISTRY_SNAPSHOOT # image parameter for settings.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-mvn-agent-env
+            key: snapshoot
+      - name: DOCKER_REGISTRY_GROUP # image parameter for pom.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-skaffold-agent-env
+            key: public
+      - name: DOCKER_REGISTRY_RELEASE # image parameter for pom.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-skaffold-agent-env
+            key: release
+      - name: DOCKER_REGISTRY_SNAPSHOOT # image parameter for pom.xml
+        valueFrom:
+          secretKeyRef:
+            name: jenkins-skaffold-agent-env
+            key: snapshoot
   imagePullSecrets:
-    - name: regcred
+    - name: nexus-s3t-co-docker-config
