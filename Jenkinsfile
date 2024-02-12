@@ -54,7 +54,7 @@ pipeline {
                             cd smart-user-api
 
                             echo "################### ${version}"
-                            skaffold deploy --namespace=smart --images=docker-r.nexus.s3t.co/smart/user:${version} --profile=prod
+                            skaffold deploy --namespace=smart --images=docker-g.nexus.s3t.co/smart/user:${version} --profile=prod
                         """
                     }
                 }
