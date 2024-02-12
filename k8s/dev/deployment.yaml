@@ -56,4 +56,6 @@ spec:
         - name: my-certificate-volume
           secret:
             secretName: s3t-wildcard-cert-prod-p12
+      imagePullSecrets:
+        - name: nexus-s3t-co-docker-config
         
