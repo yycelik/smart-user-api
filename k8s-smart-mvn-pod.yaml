@@ -26,12 +26,12 @@ spec:
       - name: REGISTRY_USERNAME # image parameter for settings.xml
         valueFrom:
           secretKeyRef:
-            name: nexus-s3-co-secret
+            name: nexus-s3t-co-secret
             key: username
       - name: REGISTRY_PASSWORD # image parameter for settings.xml
         valueFrom:
           secretKeyRef:
-            name: nexus-s3-co-secret
+            name: nexus-s3t-co-secret
             key: password
       - name: MVN_REGISTRY_GROUP # image parameter for settings.xml
         valueFrom:
@@ -69,16 +69,18 @@ spec:
     - cat
     tty: true
     env:
+      # nexus cred
       - name: REGISTRY_USERNAME # image parameter for settings.xml
         valueFrom:
           secretKeyRef:
-            name: nexus-s3-co-secret
+            name: nexus-s3t-co-secret
             key: username
       - name: REGISTRY_PASSWORD # image parameter for settings.xml
         valueFrom:
           secretKeyRef:
-            name: nexus-s3-co-secret
+            name: nexus-s3t-co-secret
             key: password
+      # mvn url
       - name: MVN_REGISTRY_GROUP # image parameter for settings.xml
         valueFrom:
           secretKeyRef:
@@ -94,6 +96,7 @@ spec:
           secretKeyRef:
             name: jenkins-mvn-agent-env
             key: snapshoot
+      # docker url
       - name: DOCKER_REGISTRY_GROUP # image parameter for pom.xml
         valueFrom:
           secretKeyRef:
