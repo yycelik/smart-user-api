@@ -8,7 +8,7 @@ build:
   artifacts:
     - image: docker-s.nexus.s3t.co/smart/user
       jib: {}
-  insecureRegistries: ["docker-s.nexus.s3t.co","docker-r.nexus.s3t.co","docker-p.nexus.s3t.co","docker-g.nexus.s3t.co"]
+  #insecureRegistries: ["docker-s.nexus.s3t.co","docker-r.nexus.s3t.co","docker-p.nexus.s3t.co","docker-g.nexus.s3t.co"]
 profiles:
 - name: prod
   build:
