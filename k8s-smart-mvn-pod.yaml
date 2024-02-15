@@ -4,15 +4,15 @@ metadata:
   name: smart-mvn-agent
 spec:
   hostAliases:
-  - ip: "192.168.0.200"
-    hostnames:
-    - "jenkins.s3t.co"
-    - "tunnel.jenkins.s3t.co"
-    - "nexus.s3t.co"
-    - "docker-s.nexus.s3t.co"
-    - "docker-r.nexus.s3t.co"
-    - "docker-p.nexus.s3t.co"
-    - "docker-g.nexus.s3t.co"
+  #- ip: "192.168.0.200"
+  #  hostnames:
+  #  - "jenkins.s3t.co"
+  #  - "tunnel.jenkins.s3t.co"
+  #  - "nexus.s3t.co"
+  #  - "docker-s.nexus.s3t.co"
+  #  - "docker-r.nexus.s3t.co"
+  #  - "docker-p.nexus.s3t.co"
+  #  - "docker-g.nexus.s3t.co"
   - ip: "192.168.0.240"
     hostnames:
     - "kmaster.com"
