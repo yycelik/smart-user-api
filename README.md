@@ -4,3 +4,34 @@ using JWT
 
 # postman
 https://www.postman.com/material-saganist-66970311/workspace/smart 
+
+# debug requirements
+install requirements
+```
+choco install kubernetes-cli 
+
+kubectl version --client
+
+choco install skaffold
+
+skaffold version
+```
+
+
+# debug
+connect k8s master and get ".config" file using below code.
+```
+kubectl config view --flatten=true
+```
+
+create ".kube" folder under your home directory on your local machine and copy ".config" file under ".kube"
+```
+mkdir %USERPROFILE%/.kube
+```
+
+set environment variables to the "debug.ps1"
+
+run "debug.ps1"
+```
+.\debug.ps1
+```
