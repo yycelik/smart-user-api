@@ -21,7 +21,7 @@ pipeline {
         stage("build") {
             steps {
                 container("smart-mvn-agent") {
-                    withCredentials([usernamePassword(credentialsId: "yycelik.github.com", usernameVariable: "USERNAME0", passwordVariable: "PASSWORD0"),
+                    withCredentials([usernamePassword(credentialsId: "yycelik.github.com", usernameVariable: "USERNAME0", passwordVariable: "PASSWORD0"),se image 'docker-g.nexus.s3t.co/openjdk:17-jdk-alpine
                                      usernamePassword(credentialsId: "mysql.s3t.co", usernameVariable: "USERNAME2", passwordVariable: "PASSWORD2")]) {
                         sh """
                             git clone https://$USERNAME0:$PASSWORD0@github.com/yycelik/smart-user-api.git
@@ -35,8 +35,6 @@ pipeline {
                             mvn versions:set -DnewVersion=${version} --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 
                             mvn install -P create-image -DskipTests #--batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
-
-                            mvn install -DskipTests #--batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
                         """
                     }
                 }
