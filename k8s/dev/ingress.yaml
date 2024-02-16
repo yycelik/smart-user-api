@@ -23,4 +23,4 @@ spec:
   tls:
   - hosts:
     - dev-user-api.s3t.co
-    secretName: smart-user-api-tls-secret
+    secretName: s3t-wildcard-cert-prod

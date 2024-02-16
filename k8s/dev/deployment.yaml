@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: smart-user-api
-        image: docker-r.nexus.s3t.co/smart/user
+        image: docker-s.nexus.s3t.co/smart/user:latest
         imagePullPolicy: Always
         ports:
           - name: http

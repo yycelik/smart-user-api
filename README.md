@@ -8,6 +8,8 @@ https://www.postman.com/material-saganist-66970311/workspace/smart
 # debug requirements
 install requirements
 ```
+choco install docker-desktop
+
 choco install kubernetes-cli 
 
 kubectl version --client

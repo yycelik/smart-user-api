@@ -20,8 +20,11 @@ $Env:KUBECONFIG="$Env:KUBECONFIG;$HOME\.kube\config"
 # Run Maven command
 mvn install -DskipTests #--batch-mode
 
+# login docker
+docker login $env:DOCKER_REGISTRY_SNAPSHOOT
+
 # build skaffold command
-skaffold build
+skaffold build #--no-prune=false --cache-artifacts=false
 
 # debug application
 skaffold dev --no-prune=false --cache-artifacts=false --namespace=smart-dev
