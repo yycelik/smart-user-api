@@ -5,7 +5,8 @@ kubectl get secret s3t-wildcard-cert-prod -n default -o jsonpath='{.data.tls\.cr
 kubectl get secret s3t-wildcard-cert-prod -n default -o jsonpath='{.data.tls\.key}' | base64 --decode > tls.key
 
 # create p12
-openssl pkcs12 -export -in tls.crt -inkey tls.key -name myapp-tls -out keystore.p12
+# name parameter used on application.properties >> server.ssl.key-alias
+openssl pkcs12 -export -in tls.crt -inkey tls.key -name springbootkey -out keystore.p12
 
 
 
