@@ -37,3 +37,20 @@ run "debug.ps1"
 ```
 .\debug.ps1
 ```
+
+# debug vscode
+to enable remote debug .vscode/launch.json
+```
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "debug",
+            "request": "attach",
+            "hostName": "debug.s3t.co",
+            "port": 5005,
+            "projectName": "user"
+        }
+    ]
+}
+```

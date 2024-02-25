@@ -1,0 +1,15 @@
+apiVersion: k8s.nginx.org/v1
+kind: TransportServer
+metadata:
+  name: debug-smart-user-api
+  namespace: smart-dev
+spec:
+  listener:
+    name: debug-01-listener
+    protocol: TCP
+  upstreams:
+    - name: debug-01-upstream
+      service: smart-user-api
+      port: 5005
+  action:
+    pass: debug-01-upstream

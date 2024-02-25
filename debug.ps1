@@ -10,7 +10,7 @@ $env:DOCKER_REGISTRY_RELEASE = "docker-r.nexus.s3t.co"
 $env:MVN_REGISTRY_GROUP = "https://nexus.s3t.co/repository/maven-public/"
 $env:REGISTRY_USERNAME = "xxxx"
 $env:REGISTRY_PASSWORD = "xxxx"
-$env:DATASOURCE_URL = "s3t.co:3306"
+$env:DATASOURCE_URL = "postgresql.s3t.co:5432"
 $env:DATASOURCE_USERNAME = "xxxx"
 $env:DATASOURCE_PASSWORD = "xxxx"
 $env:CERTIFICATE_PASSWORD = "xxxx"
@@ -36,4 +36,4 @@ if (-not $?) {
 }
 
 # debug application
-skaffold dev --no-prune=false --cache-artifacts=false --namespace=smart-dev
+skaffold debug --no-prune=false --cache-artifacts=false --namespace=smart-dev
